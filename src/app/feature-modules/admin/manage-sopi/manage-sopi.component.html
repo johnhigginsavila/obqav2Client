@@ -1,0 +1,44 @@
+<h1>Manage SOPI</h1>
+<div>
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr class="mycolor">
+            <th>SOPI code</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let programSopi of pagedItems">
+        <td>{{programSopi.sopi.sopiCode}}</td>
+        <td>{{programSopi.description}}</td>
+        </tr>
+    </tbody>
+</table>
+<div>
+    <ul *ngIf = "pager.pages && pager.pages.length" class="pagination">
+        <li [ngClass] = "{disabled:pager.currentPage === 1}" class="cursor-pointer">
+            <a (click)="setPage(1)">First</a>
+        </li>
+        <li [ngClass] = "{disabled:pager.currentPage === 1}" class="cursor-pointer">
+            <a (click)="setPage(pager.currentPage - 1)">Previous</a>
+        </li>
+        <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}" class="cursor-pointer">
+            <a (click)="setPage(page)">{{page}}</a>
+        </li>
+        <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}" class="cursor-pointer">
+            <a (click)="setPage(pager.currentPage + 1)">Next</a>
+        </li>
+        <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}" class="cursor-pointer">
+            <a (click)="setPage(pager.totalPages)">Last</a>
+        </li>
+    </ul>
+</div>
+<div>
+<div class="col-lg-12">
+    <div class="col-lg-3">
+        <a href="#/admin" class="btn btn-block btn-primary">Back</a>
+    </div>  
+    <div class="col-lg-3">
+        <a href="#/admin/manage-sopi/add-sopi" class="btn btn-block btn-primary">Add</a>
+    </div>  
+</div>

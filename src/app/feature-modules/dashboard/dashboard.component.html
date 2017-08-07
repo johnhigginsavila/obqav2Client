@@ -1,0 +1,232 @@
+<div class="container-fluid">
+    <h3>Dashboard</h3>
+    <div class="row">
+        
+        <div>
+                    <span class="col-lg-2 col-lg-offset-2" style="cursor:pointer" onclick="location.href='#/dashboard/obqa-monitoring-report-status'" title="View more.">
+                    <img src="..\..\images\icons\if_5_2185096.png" class="col-lg-12">
+                    <h4 style="text-align:center">OBQA Submission Report</h4>
+                    </span>
+       
+                    <span class="col-lg-2" style="cursor:pointer" onclick="location.href='#/dashboard/obqa-monitoring-report'" title="View more.">
+                    <img src="..\..\images\icons\if_trends_1054952.png" class="col-lg-12">
+                    <h4 style="text-align:center">OBQA Monitoring Report </h4>
+                    </span>
+
+                    <span class="col-lg-2" style="cursor:pointer" onclick="location.href='#/dashboard/student-profile-summary'" title="View more.">
+                    <img src="..\..\images\icons\if_10_2185093.png" class="col-lg-12">
+                    <h4 style="text-align:center">Student Statistic</h4>
+                    </span>
+
+                    
+                    <span class="col-lg-2" style="cursor:pointer" onclick="location.href='#/dashboard/cycle-report'" title="View more.">
+                    <img src="..\..\images\icons\if_Graph-Magnifier_379472.png" class="col-lg-12">
+                    <h4 style="text-align:center">OBQA Target and Performace</h4>
+                    </span>
+
+                    <span class="col-lg-2"></span>
+
+        </div>
+        <div class="col-lg-12" style="margin-top:20px">
+            <div class="col-lg-8 col-lg-offset-2">
+                <!-- Target and Performace  Report per cycle Start-->
+                 <div class="panel panel-primary">
+                    <div class="panel-heading">
+                    <h3 class="panel-title">Target and Performace Report</h3>
+                        </div>
+                            <div class="panel-body">
+                                <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12">
+                                    <div style="display: block;">
+                                        <canvas baseChart width="400" height="100"
+                                                    [datasets]="lineChartData"
+                                                    [labels]="lineChartLabels"
+                                                    [options]="lineChartOptions"
+                                                    [colors]="lineChartColors"
+                                                    [legend]="lineChartLegend"
+                                                    [chartType]="lineChartType"
+                                                    (chartHover)="chartHovered($event)"
+                                                    (chartClick)="chartClicked($event)">
+                                        </canvas>
+                                    </div>
+                                </div>
+                        </div>
+                    </div>   
+                <!-- Target and Performace Report per cycle end-->
+            </div>
+            <div class="col-lg-2">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+<!-- <div class="container-fluid">
+    <!-- OBQA Submission Report-
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+        <h3 class="panel-title">OBQA Submission Report</h3>
+        </div>
+            <div class="panel-body">
+                <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12">
+                <div style="display: block;">
+                <canvas baseChart width="500" height="70"
+                    [datasets]="barChartData"
+                    [labels]="barChartLabels"
+                    [options]="barChartOptions"
+                    [colors]="barChartColors"
+                    [legend]="barChartLegend"
+                    [chartType]="barChartType"
+                    (chartHover)="barHovered($event)"
+                    (chartClick)="barClicked($event)">
+                </canvas>
+                </div>
+                </div>
+                  <a [routerLink]="['/dashboard/obqa-monitoring-report-status']" class="btn btn-primary btn-dashboard" title="View more.">...</a>
+            </div>
+        </div>
+    <!-- OBQA submission report end-->
+    <!-- OBQA Monitoring reportt--
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+        <h3 class="panel-title">OBQA Monitoring Report</h3>
+        </div>
+            <div class="panel-body">
+                <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12">
+                <div style="display: block;">
+                <canvas baseChart width="500" height="70"
+                    [datasets]="barChartData"
+                    [labels]="barChartLabels"
+                    [options]="barChartOptions"
+                    [colors]="barChartColors"
+                    [legend]="barChartLegend"
+                    [chartType]="barChartType"
+                    (chartHover)="barHovered($event)"
+                    (chartClick)="barClicked($event)">
+                </canvas>
+                </div>
+                </div>
+                  <a [routerLink]="['/dashboard/obqa-monitoring-report']" class="btn btn-primary btn-dashboard" title="View more.">...</a>
+            </div>
+        </div>
+    <!-- OBQA Monitoring report --
+
+    <div class="row">
+    <!-- Student Profile--
+    <div class="col-md-6 col-lg-6 col-xs-12">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Student Profile</h3>
+            </div>
+                <div class="panel-body">
+                    <div class="col-md-12 col-lg-12 col-xs-12 container-fluid">
+                            <div style="display: block;">
+                                <canvas baseChart width="500" height="500"
+                                    [datasets]="radarChartData"
+                                    [labels]="radarChartLabels"
+                                    [chartType]="radarChartType"
+                                    (chartHover)="chartHovered($event)"
+                                    (chartClick)="chartClicked($event)">
+                                </canvas>
+                            </div>
+                        <div>
+                            <a [routerLink]="['/dashboard/student-profile-summary']" class="btn btn-primary btn-dashboard" title="View more.">...</a>
+                        </div>                
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Student Profile end-->
+    <!-- Evidence Report Start--
+    <div class="col-md-6 col-lg-6 col-xs-12 col-md-offset-0">
+    <div class="panel panel-primary">
+    <div class="panel-heading">
+    <h3 class="panel-title">Evidence Report</h3>
+        </div>
+            <div class="panel-body">
+                <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12">
+                    <div style="display: block;">
+                        <canvas baseChart width="500" height="500"
+                            [datasets]="barChartData"
+                            [labels]="barChartLabels"
+                            [options]="barChartOptions"
+                            [colors]="barChartColors"
+                            [legend]="barChartLegend"
+                            [chartType]="evidencebarChartType"
+                            (chartHover)="barHovered($event)"
+                            (chartClick)="barClicked($event)"> 
+                        </canvas>
+                    </div>
+                    <div>
+                        <a [routerLink]="['/dashboard/evidence-report']" class="btn btn-primary btn-dashboard" title="View more.">...</a>
+                    </div>
+                </div>
+           </div>
+        </div>
+    </div>
+    <!-- Evidence Report end-->
+    <!-- Target and Performace  Report per cycle Start--
+    <div class="col-md-12 col-lg-12 col-xs-12 col-md-offset-0">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+        <h3 class="panel-title">Target and Performace Report per Course(average)(current cycle)</h3>
+            </div>
+                <div class="panel-body">
+                    <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12">
+                        <div style="display: block;">
+                            <canvas baseChart width="400" height="100"
+                                        [datasets]="lineChartData"
+                                        [labels]="lineChartLabels"
+                                        [options]="lineChartOptions"
+                                        [colors]="lineChartColors"
+                                        [legend]="lineChartLegend"
+                                        [chartType]="lineChartType"
+                                        (chartHover)="chartHovered($event)"
+                                        (chartClick)="chartClicked($event)">
+                            </canvas>
+                        </div>
+                    </div>
+            </div>
+            </div>
+        </div>
+    <!-- Target and Performace Report per cycle end-->
+    <!-- Target and Performace  Report Start-->
+    <!--<div class="col-md-12 col-lg-12 col-xs-12 col-md-offset-0">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+            <h3 class="panel-title">Target and Performace Report per Cycle(average) </h3>
+                </div>
+                    <div class="panel-body">
+                        <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12">
+                            <div style="display: block;">
+                                <canvas baseChart width="400" height="100"
+                                            [datasets]="lineChartData"
+                                            [labels]="lineChartLabels"
+                                            [options]="lineChartOptions"
+                                            [colors]="lineChartColors"
+                                            [legend]="lineChartLegend"
+                                            [chartType]="lineChartType"
+                                            (chartHover)="chartHovered($event)"
+                                            (chartClick)="chartClicked($event)">
+                                </canvas>
+                            </div>
+                        </div>
+                     </div>
+            </div>
+        </div>-->
+    <!-- Target and Performace Report end--
+    </div>
+</div>-->
+
+
+
+
+
+
+
+
+
+

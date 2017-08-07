@@ -1,0 +1,43 @@
+<h1>This is Student Grade</h1>
+
+
+<table *ngFor="let myClass of myClass"class="table table-bordered table-hover">
+    <thead>
+        <tr class="mycolor">
+            <th>Students</th>
+            <th *ngFor="let assessmentClass of myClass.assessmentClass">{{assessmentClass.assessment.programSopi.sopi.sopiCode}}</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let classStudent of pagedItems">
+            <td>{{classStudent.student.lastname}}, {{classStudent.student.firstname}}</td>
+            <td *ngFor="let assessmentClass of myClass.assessmentClass">{{classStudent.student.grade | studentGrade : assessmentClass.assessment.id: percent}}</td>          
+        </tr>
+    </tbody>
+</table>
+<div>
+    <ul *ngIf = "pager.pages && pager.pages.length" class="pagination">
+        <li [ngClass] = "{disabled:pager.currentPage === 1}" class="cursor-pointer">
+            <a (click)="setPage(1)"  >First</a>
+        </li>
+        <li [ngClass] = "{disabled:pager.currentPage === 1}" class="cursor-pointer">
+            <a (click)="setPage(pager.currentPage - 1)">Previous</a>
+        </li>
+        <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}" class="cursor-pointer">
+            <a (click)="setPage(page)">{{page}}</a>
+        </li>
+        <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}" class="cursor-pointer">
+            <a (click)="setPage(pager.currentPage + 1)">Next</a>
+        </li>
+        <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}" class="cursor-pointer">
+            <a (click)="setPage(pager.totalPages)">Last</a>
+        </li>
+    </ul>
+</div>
+
+<div class="form-group col-lg-3">
+    <label class="btn btn-default" for="my-file-selector">
+    <input id="my-file-selector" name="file" type="file" style="display:none;" onchange="$('#upload-file-info').html($(this).val());">Choose a File</label>
+    <span class='label label-info' id="upload-file-info"></span>
+    <button class="btn btn-primary" (click)="onUploadFile()">Upload</button>
+</div>

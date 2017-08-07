@@ -1,0 +1,45 @@
+<h1>Manage Faculty</h1>
+<div>
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr class="mycolor">
+                <th>Name</th>
+                <th>Program</th>
+                <th>Position</th>
+                <th>Date registered</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let faculty of pagedItems">
+                <td>{{faculty.firstname +" "+faculty.lastname}}</td>
+                <td>{{faculty.program.programName}}</td>
+                <td>{{faculty.userRestriction.restrictionName}}</td>
+                <td>{{faculty.createdAt}}</td> 
+            </tr>
+        </tbody>
+    </table>
+        <div>
+        <ul *ngIf = "pager.pages && pager.pages.length" class="pagination">
+            <li [ngClass] = "{disabled:pager.currentPage === 1}"  class="cursor-pointer">
+                <a (click)="setPage(1)">First</a>
+            </li>
+            <li [ngClass] = "{disabled:pager.currentPage === 1}" class="cursor-pointer">
+                <a (click)="setPage(pager.currentPage - 1)">Previous</a>
+            </li>
+            <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}" class="cursor-pointer">
+                <a (click)="setPage(page)">{{page}}</a>
+            </li>
+            <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}" class="cursor-pointer">
+                <a (click)="setPage(pager.currentPage + 1)">Next</a>
+            </li>
+            <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}" class="cursor-pointer">
+                <a (click)="setPage(pager.totalPages)">Last</a>
+            </li>
+        </ul>
+    </div>
+    <div>
+        <div class="col-lg-12">
+            <div class="col-lg-3">
+                <a href="#/admin" class="btn btn-block btn-success">Back</a>
+            </div>
+        </div>

@@ -1,0 +1,80 @@
+<br>
+<div>
+
+    <form class='form-horizontal from-signin' id='sign-up-form' [formGroup]='userNewForm' (ngSubmit)='onSubmit()'>
+        <fieldset class='container-fluid col-lg-4 col-lg-offset-4'>
+            <legend>Create an account</legend>
+            <div class="form-group">
+                <div class="">
+                <input type="text" class="form-control" 
+                    placeholder="First Name" 
+                    formControlName="firstname" 
+                    required>
+                  <div *ngIf="userNewForm.controls['firstname'].hasError('required') && (userNewForm.controls['firstname'].dirty || userNewForm.controls['firstname'].touched)" class="alert alert-danger" > Please enter a Firstname</div> 
+                </div>
+            </div>
+            <div class="form-group">
+                <div>
+                <input type="text" class="form-control" placeholder="Last Name" formControlName="lastname" required >
+                <div *ngIf="userNewForm.controls['lastname'].hasError('required') && (userNewForm.controls['lastname'].dirty || userNewForm.controls['lastname'].touched)" class="alert alert-danger" > Please enter a Lastname</div> 
+                </div>
+            </div>
+      
+            <div class="form-group">
+                <div class="">
+                <input type="email" class="form-control" placeholder="Email" formControlName="email" required>
+                <div *ngIf="userNewForm.controls['email'].hasError('required') && (userNewForm.controls['email'].dirty || userNewForm.controls['email'].touched)" class="alert alert-danger" > Please enter a Valid Email</div> 
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="">
+                <input type="password" class="form-control" placeholder="Password" formControlName="password" required>
+                <div *ngIf="userNewForm.controls['password'].hasError('required') && (userNewForm.controls['password'].dirty || userNewForm.controls['password'].touched)" class="alert alert-danger" > Please enter a Password</div> 
+                </div>
+            </div>
+            <div class="form-group">
+                <div>
+                <input type="password" class="form-control" placeholder="Confirm Password" formControlName="confirmation" required>
+                <div *ngIf="userNewForm.controls['confirmation'].hasError('required') && (userNewForm.controls['confirmation'].dirty || userNewForm.controls['confirmation'].touched)" class="alert alert-danger" > Please enter a Confirmed password</div> 
+                <div *ngIf="userNewForm.controls['confirmation'].value != userNewForm.controls['password'].value && (userNewForm.controls['confirmation'].dirty || userNewForm.controls['confirmation'].touched)" class="alert alert-danger" > Password did not matched</div> 
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="position">Position</label>
+                <select formControlName="userRestriction">
+                    <option value="admin">Admin</option>
+                    <option value="director">Director</option>
+                    <option value="assistantadminstaff">Assistant Admin Staff</option>
+                    <option value="coordinator">Coordinator</option>
+                    <option value="faculty">Faculty</option>
+                    <option selected value="visitor">Visitor</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="program">Program</label>
+                <select formControlName="program">
+                    <option value="che">Chemical Engineering</option>
+                    <option value="civ">Civil Engineering</option>
+                    <option value="cpe">Computer Engerineering</option>
+                    <option value="ece">Electronics and Comm Engineering</option>
+                    <option value="ie">Industrial Engineering</option>
+                    <option value="mem">Manufacturing Engineering and Mngmt</option>
+                    <option value="me">Mechanical Engineering</option>
+                    <option value="n/a" selected>N/A</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <div class="col-lg-offset-6">
+                <button type="reset" class="btn btn-default">Cancel</button>
+                <button class="btn btn-primary" type="submit" [disabled]="!userNewForm.valid">Submit</button>
+                <!--<input type="hidden" name="_csrf" value="<%= _csrf %>">-->
+                </div>
+            </div>
+
+            
+        </fieldset>
+    </form>
+</div>

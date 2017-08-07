@@ -1,0 +1,14 @@
+.ng-invalid:not(.ng-pristine):not(.required-invalid) {
+    border: 1px solid #d93a3e;
+}
+input[required].ng-invalid {
+    border-left: 5px solid #d93a3e;
+}
+input[required]:not(.required-invalid),
+input[required].ng-invalid:not(.required-invalid) {
+    border-left: 5px solid green;
+}
+
+.error {
+    color: #d93a3e;
+}

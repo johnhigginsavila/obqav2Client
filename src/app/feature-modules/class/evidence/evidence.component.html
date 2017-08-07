@@ -1,0 +1,90 @@
+<h1>EVIDENCES</h1>
+
+
+<table *ngFor="let myClass of myClass"class="table table-bordered table-hover">
+    <thead>
+        <tr class="mycolor">
+            <th>SOPI</th>
+            <th>Max</th>
+            <th>Median</th>
+            <th>Min</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let assessmentClass of myClass.assessmentClass">
+            <td>{{assessmentClass.assessment.programSopi.sopi.sopiCode}}</td>
+            <td>       
+                <span class="glyphicon glyphicon-paperclip" data-toggle="modal" data-target="#myModal" (click)="onClick(myClass.id, assessmentClass.id, assessmentClass.assessment.id, assessmentClass.assessment.programSopi.id, assessmentClass.assessment.programCourse.id, 'MAX')"></span>
+                <a data-toggle="modal" [attr.data-target]="'#' + assessmentClass.id" (click)="onFilePreview(assessmentClass.id,'MAX', myClass.evidence)"> {{myClass.evidence | evidenceAssessment : assessmentClass.id :'MAX'}} </a>
+                    <div class="modal" [attr.id]="assessmentClass.id">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                            <embed [src]="fileUrl()" width="600px" height="450px"/> 
+                            </div>
+                        </div>
+                    </div>
+            </td>
+            <td>
+                <span class="glyphicon glyphicon-paperclip" data-toggle="modal" data-target="#myModal" (click)="onClick(myClass.id, assessmentClass.id, assessmentClass.assessment.id, assessmentClass.assessment.programSopi.id, assessmentClass.assessment.programCourse.id, 'MEDIAN')"></span>
+                <a data-toggle="modal" [attr.data-target]="'#' + assessmentClass.id" (click)="onFilePreview(assessmentClass.id,'MEDIAN', myClass.evidence)"> {{myClass.evidence | evidenceAssessment : assessmentClass.id :'MEDIAN'}} </a>
+                <div class="modal" [attr.id]="assessmentClass.id">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                            <embed [src]="fileUrl()" width="600px" height="450px"/> 
+                            </div>
+                        </div>
+                    </div>
+            </td>
+            <td>
+                <span class="glyphicon glyphicon-paperclip" data-toggle="modal" data-target="#myModal" (click)="onClick(myClass.id, assessmentClass.id, assessmentClass.assessment.id, assessmentClass.assessment.programSopi.id, assessmentClass.assessment.programCourse.id, 'MIN')"></span>
+                <a data-toggle="modal" [attr.data-target]="'#' + assessmentClass.id" (click)="onFilePreview(assessmentClass.id, 'MIN', myClass.evidence)"> {{myClass.evidence | evidenceAssessment : assessmentClass.id :'MIN'}} </a>
+                <div class="modal" [attr.id]="assessmentClass.id">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                            <embed [src]="fileUrl()" width="600px" height="450px"/> 
+                            </div>
+                        </div>
+                    </div>
+            </td>         
+        </tr>
+    </tbody>
+</table>
+<button class="btn-primary" data-toggle="modal" data-target="#showEvidence">Show Evidence</button>
+
+
+
+
+<div class="modal" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Upload File</h4>
+      </div>
+      <div class="modal-body">  
+        <span class='label label-info' id="upload-file-info"></span>
+      </div>
+      <div class="modal-footer">
+        <div class="form-group col-lg-20">
+            <label class="btn btn-default" for="my-file-selector">
+            <input id="my-file-selector" name="file" type="file" style="display:none;" onchange="$('#upload-file-info').html($(this).val());">Choose a File</label>
+            <button class="btn btn-primary" (click)="onUploadFile()" data-dismiss="modal">Upload</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="showEvidence">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <embed [src]="fileUrl()" width="600px" height="450px"/> 
+    </div>
+  </div>
+</div>
+<!--<div class="form-group col-lg-3">
+    <label class="btn btn-default" for="my-file-selector">
+    <input id="my-file-selector" name="file" type="file" style="display:none;" onchange="$('#upload-file-info').html($(this).val());">Choose a File</label>
+    <span class='label label-info' id="upload-file-info"></span>
+    <button class="btn btn-primary" (click)="onUploadFile()">Upload</button>
+</div>-->

@@ -1,0 +1,40 @@
+
+<div>
+   <form class='form-horizontal from-signin' [formGroup]='sopiNewForm' (ngSubmit)='onSubmit()' >
+        <fieldset class='container-fluid col-lg-10 col-lg-offset-1'>
+            <legend>Add SOPI</legend>
+           <div class="container">
+
+           <div class="form-group col-lg-2">
+                <label class="control-label">SO Code</label>
+                <input type="text" class="form-control input-sm" placeholder="SO Code" formControlName="soCode" required>
+            </div>
+
+            <span class="col-lg-1"></span>
+            <div class="form-group col-lg-2">
+                <label class="control-label">SOPI Code</label>
+                <input type="text" class="form-control input-sm" placeholder="SOPI Code" formControlName="sopiCode" required>
+            </div>
+
+            <span class="col-lg-12"></span>
+            <div class="form-group col-lg-6">
+                <label class="control-label">SOPI Description</label>
+                <input type="text" class="form-control input-sm" placeholder="Description" formControlName="description" required>
+            </div>
+
+            <div class="container row">
+            <div class="form-group col-lg-12">
+                <a href="#/admin/manage-sopi"  class="btn btn-default">Back</a>
+                <button type="reset" class="btn btn-default">Cancel</button>
+                <button class="btn btn-default" type="submit" [disabled]="!sopiNewForm.valid">Submit</button>
+            </div>
+            </div>
+            
+            </div> 
+        </fieldset>
+    </form>
+    <div>     
+        <input type="file" name="file" id="file">
+        <button (click)="onUploadFile()">Upload</button>
+    </div>
+</div>

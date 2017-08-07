@@ -1,0 +1,60 @@
+<br>
+<div>
+
+    <form class='form-horizontal from-signin' id='sign-up-form' [formGroup]='classNewForm' (ngSubmit)='onSubmit()'>
+        <fieldset class='container-fluid col-lg-10 col-lg-offset-1'>
+            <legend>Add Class</legend>
+
+            <div class="container">
+                <div class="form-group col-lg-3">
+                    <label class="control-label">COURSE</label>
+                    <input type="text" class="form-control input-sm" placeholder="COURSE" formControlName="course" required>
+                </div>
+                <span class="col-lg-1 "></span>
+                <div class="form-group col-lg-3">
+                    <label class="control-label">Term 1,2,3</label>
+                    <input type="text" class="form-control input-sm" placeholder="Term 1,2,3" formControlName="term" required>
+                </div>
+                <span class="col-lg-1 "></span>
+                <div class="form-group col-lg-3">
+                    <label class="control-label">Academic Year</label>
+                    <input type="text" class="form-control input-sm" placeholder="Academic Year (YYYY-YYYY)" formControlName="academicYear" required>
+                </div>
+                <div class="form-group col-lg-3">
+                    <label class="control-label">Firstname of Instructor</label>
+                    <input type="text" class="form-control input-sm" placeholder="Firstname of Instructor" formControlName="firstnameInstructor"
+                        required>
+                </div>
+                <span class="col-lg-1"></span>
+                <div class="form-group col-lg-3">
+                    <label class="control-label">Lastname of Instructor</label>
+                    <input type="text" class="form-control input-sm" placeholder="Lastname of Instructor" formControlName="lastnameInstructor"
+                        required>
+                </div>
+                <span class="col-lg-1"></span>
+                <div class="form-group col-lg-3">
+                    <label class="control-label">Cycle</label>
+                    <input type="text" class="form-control input-sm" placeholder="Cycle 1,2,3" formControlName="cycle"
+                        required>
+                </div>
+
+                <div class="container row">
+                    <div class="form-group col-lg-12">
+                        <a href="#/admin/manage-classes" class="btn btn-default">Back</a>
+                        <button type="reset" class="btn btn-default">Cancel</button>
+                        <button class="btn btn-default" type="submit" [disabled]="!classNewForm.valid">Submit</button>
+                    </div>
+                </div>
+                
+            </div>
+
+
+        </fieldset>
+    </form>
+    <div class="form-group col-lg-3">
+    <input type="file" name="file" id="file">
+    <button (click)="onUploadFile()">Upload</button>
+    </div>
+    
+    
+</div>

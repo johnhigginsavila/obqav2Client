@@ -1,0 +1,35 @@
+<br>
+<div>
+    <form class='form-horizontal from-signin' [formGroup]='courseNewForm' (ngSubmit)='onSubmit()'>
+        <fieldset class='container-fluid col-lg-10 col-lg-offset-1'>
+            <legend>Add Course</legend>
+            <div class="container">
+            <div class="form-group col-lg-3">
+                <label class="control-label">Course Code</label>
+                <input type="text" class="form-control input-sm" placeholder="Course" formControlName="courseCode" required>
+            </div>
+            <span class="col-lg-1 "></span>
+            <div class="form-group col-lg-5">
+                <label class="control-label">Course Name</label>
+                <input type="text" class="form-control input-sm" placeholder="Course Name" formControlName="courseName" required>
+            </div>
+            <div class="form-group col-lg-9">
+                <label class="control-label">Description</label>
+                <input type="text" class="form-control input-sm" placeholder="Description" formControlName="description" required>
+            </div>
+             <span class="col-lg-5"></span>
+            <div class="container row">
+            <div class="form-group col-lg-8">
+                <a href="#/admin/manage-courses" class="btn btn-default">Back</a>
+                <button type="reset" class="btn btn-default">Cancel</button>
+                <button class="btn btn-primary" type="submit" [disabled]="!courseNewForm.valid">Submit</button>
+            </div>
+            </div>
+            <div>     
+                <input type="file" name="file" id="file">
+                <button (click)="uploadFile()">Upload</button>
+            </div>
+            </div>
+        </fieldset>
+    </form>
+</div>

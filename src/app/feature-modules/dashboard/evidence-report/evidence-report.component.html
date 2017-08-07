@@ -1,0 +1,44 @@
+<br>
+<div class="row">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">OBQA Evidence Progress</h3>
+        </div>
+        <div class="panel-body">
+            <!-- Average Evidence per Cycle-->
+                <div class="col-md-12 col-lg-12 col-xs-12">
+                    <div style="display: block;">
+                        <canvas baseChart width="500" height="60"
+                            [datasets]="barChartData"
+                            [labels]="barChartLabels"
+                            [options]="barChartOptions"
+                            [colors]="barChartColors"
+                            [legend]="barChartLegend"
+                            [chartType]="barChartType"
+                            (chartHover)="barHovered($event)"
+                            (chartClick)="barClicked($event)">
+                        </canvas>
+                    </div>
+                </div>
+            <!-- Average Evidence per Cycle end -->
+            <!-- Evidence per program -->
+                <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+                    <div style="display: block;">
+                        <canvas baseChart width="250" height="60"
+                            [datasets]="barChartData"
+                            [labels]="barChartLabels"
+                            [options]="barChartOptions"
+                            [colors]="barChartColors"
+                            [legend]="barChartLegend"
+                            [chartType]="barChartType"
+                            (chartHover)="barHovered($event)"
+                            (chartClick)="barClicked($event)">
+                        </canvas>
+                    </div>
+                </div>
+            <!-- Evidence per program end -->
+        </div>
+            <span class="col-lg-11"></span> 
+            <a [routerLink]="['/dashboard']" class="btn btn-primary">Back</a>
+    </div>
+</div>

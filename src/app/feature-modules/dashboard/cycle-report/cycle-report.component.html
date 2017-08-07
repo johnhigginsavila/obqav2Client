@@ -1,0 +1,30 @@
+ <h1>Cycle Report</h1>
+ <!-- Target and Performace  Report per cycle Start-->
+             <div class="col-lg-8 col-lg-offset-2">
+                 <div class="panel panel-primary">
+                    <div class="panel-heading">
+                    <h3 class="panel-title">Target and Performace Report</h3>
+                        </div>
+                            <div class="panel-body">
+                                <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12">
+                                    <div style="display: block;">
+                                        <canvas baseChart width="400" height="100"
+                                                    [datasets]="lineChartData"
+                                                    [labels]="lineChartLabels"
+                                                    [options]="lineChartOptions"
+                                                    [colors]="lineChartColors"
+                                                    [legend]="lineChartLegend"
+                                                    [chartType]="lineChartType"
+                                                    (chartHover)="chartHovered($event)"
+                                                    (chartClick)="chartClicked($event)">
+                                        </canvas>
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+           </div>
+           <div>
+               <button (click)="previousSopi()" class="btn btn-success">Previous</button>
+                <button (click)="nextSopi()" class="btn btn-primary">Next</button>
+           </div>
+<!-- Target and Performace Report per cycle end-->

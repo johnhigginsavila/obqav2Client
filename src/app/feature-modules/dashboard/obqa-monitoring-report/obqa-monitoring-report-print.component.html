@@ -1,0 +1,37 @@
+<h1>OBQA MONITORING REPORT</h1>
+        <div class="container-fluid">
+        <div class="row">
+                <div>     
+                    <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr class="mycolor">
+                        <th>SOPI</th>
+                            <th>Course</th>
+                            <th>Assessment Level</th>
+                            <th>Task</th>
+                            <th>Target</th>
+                            <th>Term</th>
+                            <th>A.Y.</th>
+                            <th>Cycle</th>
+                            <th>Performance</th>
+                            <th style="width: 20%">Improvement Plan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let report of assessmentReport" >
+                            <td *ngIf="isCycle(report.assessmentCycle)">{{report.sopi}}</td>
+                            <td *ngIf="isCycle(report.assessmentCycle)">{{report.course}}</td>
+                            <td *ngIf="isCycle(report.assessmentCycle)">{{report.assessmentLevel}}</td>
+                            <td *ngIf="isCycle(report.assessmentCycle)">{{report.assessmentTask}}</td>
+                            <td *ngIf="isCycle(report.assessmentCycle)">{{report.target | assessmentTarget : report.passingGrade}}</td><!-- use pipe here -->
+                            <td *ngIf="isCycle(report.assessmentCycle) ">{{report.term}}</td>
+                            <td *ngIf="isCycle(report.assessmentCycle) ">{{report.academicYear}}</td>
+                            <td *ngIf="isCycle(report.assessmentCycle)">{{report.assessmentCycle}}</td>
+                            <td *ngIf="isCycle(report.assessmentCycle) ">{{report.performance | percent}}</td>
+                            <td *ngIf="isCycle(report.assessmentCycle)">{{report.improvementPlan}}</td>
+                        </tr>
+                    </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>

@@ -1,0 +1,66 @@
+<br>
+<div>
+
+    <form class='form-horizontal from-signin' id='sign-up-form' [formGroup]='assessmentNewForm' (ngSubmit)='onSubmit()' >
+        <fieldset class='container-fluid col-lg-10 col-lg-offset-1'>
+            <legend>Add Assessment</legend>
+
+            <div class="form-group col-lg-2">
+                <label class="control-label">SOPI</label>
+                <input class="form-control input-sm" type="text" placeholder="SOPI" formControlName="sopi" required> 
+            </div>
+            <span class="col-lg-1 "></span>
+            <div class="form-group col-lg-5">
+                <label class="control-label">COURSE</label>
+                <input type="text" class="form-control input-sm" placeholder="COURSE" formControlName="course" required>
+            </div>
+            <span class="col-lg-1 "></span>
+            <div class="form-group col-lg-3">
+                <label class="control-label">Level</label>
+                <input type="text" class="form-control input-sm" placeholder="LEVEL" formControlName="assessmentLevel" required>
+            </div>
+            <div class="form-group col-lg-12">
+                <label class="control-label">Assessment Task</label>
+                <input type="text" class="form-control input-sm" placeholder="TASK" formControlName="assessmentTask" required>
+            </div>
+
+            <div class="form-group col-lg-2">
+                <label class="control-label">Passing Grade</label>
+                <input type="text" class="form-control input-sm" placeholder="(in decimal)" formControlName="passingGrade" required>
+            </div>
+            <span class="col-lg-1"></span>
+            <div class="form-group col-lg-2">
+                <label class="control-label">Target</label>
+                <input type="text" class="form-control input-sm" placeholder="(in decimal)" formControlName="target" required>
+            </div>
+            <span class="col-lg-1 "></span>
+            <div class="form-group col-lg-3">
+                <label class="control-label">Term</label>
+                <input type="text" class="form-control input-sm" placeholder="Term" formControlName="term" required>
+            </div>
+            <span class="col-lg-1 "></span>
+            <div class="form-group col-lg-3">
+                <label class="control-label">Academic Year</label>
+                <input type="text" class="form-control input-sm" placeholder="Academic Year (YYYY-YYYY)" formControlName="academicYear" required>
+            </div>
+            <span class="col-lg-1 form-group"></span>
+            <div class="form-group col-lg-2">
+                <label class="control-label">Cycle</label>
+                <input type="text" class="form-control input-sm" placeholder="Cycle" formControlName="assessmentCycle" required>
+            </div>
+        
+            <div class="form-group col-lg-12">
+                <a href="#/admin/manage-assessment" class="btn btn-default">Back</a>
+                <button type="reset" class="btn btn-default">Cancel</button>
+                <button class="btn btn-primary" type="submit" [disabled]="!assessmentNewForm.valid">Submit</button>
+            </div>
+            
+        </fieldset>
+    </form>
+    <div class="form-group col-lg-3">
+        <input type="file" name="file" id="file">
+        <button (click)="onUploadFile()">Upload</button>
+    </div>
+  
+    
+</div>

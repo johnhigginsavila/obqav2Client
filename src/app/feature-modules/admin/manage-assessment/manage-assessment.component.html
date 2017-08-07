@@ -1,0 +1,105 @@
+<h3>Manage Assessment</h3>
+<div>  
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="row">
+            <div class="pull-right">
+                <select class="form-control input-sm" class="form-control" [(ngModel)]="selectedTerm" (change)="change()">
+                    <option *ngFor="let term of term" [ngValue]="term.value">{{term.name}}</option>
+                </select>
+            </div>
+            
+
+            <div class="pull-right">
+                <select class="form-control input-sm" class="form-control" [(ngModel)]="selectedCycle" (change)="change()">
+                    <option *ngFor="let cycle of cycle" [ngValue]="cycle.value">{{cycle.name}} : {{cycle.academicYear}}</option>
+                </select>
+            </div>
+        </div>
+    </div>
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr class="mycolor">
+          <th>SOPI</th>
+            <th>Course</th>
+            <th>Assessment Level</th>
+            <th>Task</th>
+            <th>Target</th>
+            <th>Term</th>
+            <th>A.Y.</th>
+            <th>Cycle</th>
+            <!--<th>Performance</th>-->
+            <th style="width: 20%">Improvement Plan</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let assessment of pagedItems">
+            <td *ngIf="isCycle(assessment.assessmentCycle)">{{assessment.programSopi.sopi.sopiCode}}</td>
+            <td *ngIf="isCycle(assessment.assessmentCycle)">{{assessment.programCourse.course.courseCode}}</td>
+            <td *ngIf="isCycle(assessment.assessmentCycle)">{{assessment.assessmentLevel}}</td>
+            <td *ngIf="isCycle(assessment.assessmentCycle)">{{assessment.assessmentTask}}</td>
+            <td *ngIf="isCycle(assessment.assessmentCycle)">{{assessment.target | assessmentTarget : assessment.passingGrade }} </td>
+            <td *ngIf="isCycle(assessment.assessmentCycle)">{{assessment.term}}</td>
+            <td *ngIf="isCycle(assessment.assessmentCycle)">{{assessment.academicYear}}</td>
+            <td *ngIf="isCycle(assessment.assessmentCycle)">{{assessment.assessmentCycle}}</td>
+            <!--<td>{{assessment.passingGrade}}</td>-->
+            <td *ngIf="isCycle(assessment.assessmentCycle)">{{assessment.improvementPlan}}</td>
+            <td *ngIf="isCycle(assessment.assessmentCycle)"><span class="glyphicon glyphicon-plus"data-toggle="modal" data-target="#myModal" (click)="getAssessmentId(assessment.id)"></span></td>
+            
+        </tr>
+    </tbody>
+</table>
+
+<div>
+    <ul *ngIf = "pager.pages && pager.pages.length" class="pagination">
+        <li [ngClass] = "{disabled:pager.currentPage === 1}" class="cursor-pointer">
+            <a (click)="setPage(1)">First</a>
+        </li>
+        <li [ngClass] = "{disabled:pager.currentPage === 1}" class="cursor-pointer">
+            <a (click)="setPage(pager.currentPage - 1)">Previous</a>
+        </li>
+        <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}" class="cursor-pointer">
+            <a (click)="setPage(page)">{{page}}</a>
+        </li>
+        <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}" class="cursor-pointer">
+            <a (click)="setPage(pager.currentPage + 1)">Next</a>
+        </li>
+        <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}" class="cursor-pointer">
+            <a (click)="setPage(pager.totalPages)">Last</a>
+        </li>
+    </ul>
+</div>
+
+
+<div>
+<div class="col-lg-12">
+    <div class="col-lg-3">
+        <a href="#/admin" class="btn btn-block btn-success">Back</a>
+    </div>  
+    <div class="col-lg-3">
+        <a [routerLink]="['/admin/manage-assessment/add-assessment']" class="btn btn-block btn-primary">Add Assessment</a>
+    </div>
+</div>
+
+
+<div class="modal" id="myModal">
+    <form [formGroup]='addImprovementPlanForm' (ngSubmit)='submitImprovementPlan()'>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Add improvement Plan</h4>
+      </div>
+      <div class="modal-body">
+        <textarea formControlName="improvementPlan" required class="form-control" rows="5" placeholder="Improvement plan...."></textarea>
+      </div>
+      <div class="modal-footer">
+        <div class="form-group col-lg-12">
+            <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Submit</button>
+            <button type="button" class="btn btn-primary" data-dismiss="modal">Exit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  </form>
+</div>

@@ -1,0 +1,10 @@
+<div class='jumbotron'>
+    <h1>Outcomes-based Quality Assurance</h1>
+</div>
+<hr>
+<div *ngIf="!isLogin()">
+    <a class='btn btn-primary btn-block' [routerLink]="['/session/new']" >Sign In</a>
+    <a class='btn btn-primary btn-block' [routerLink]="['/user/new']" >Sign Up</a>
+</div>
+
+<hr>
