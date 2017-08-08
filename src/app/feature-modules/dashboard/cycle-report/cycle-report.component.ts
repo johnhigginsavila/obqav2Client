@@ -18,9 +18,8 @@ import { ISession } from '../../../interfaces/session.interface';
   templateUrl: './cycle-report.component.html',
   styleUrls: ['./cycle-report.component.css']
 })
-export class CycleReportComponent implements OnInit {
-
-  private session:ISession;
+export class CycleReportComponent {
+    private session:ISession;
     private program:number;
     private getCycleReport:Observable<any[]>;
     private sopiIndex:number;
@@ -47,6 +46,11 @@ public lineChartData:Array<any> = [
 public lineChartLabels:Array<any> = ['Cycle 1', 'Cycle 2', 'Cycle 3','Cycle 4','Cycle 5'];
 public lineChartOptions:any = {
     responsive: true,
+    elements: {
+        line: {
+            tension: 0
+        }
+    },
     scales:{
         yAxes:[{
             ticks:{
@@ -61,7 +65,27 @@ public lineChartOptions:any = {
             }
         }]
     }
-    };
+};
+
+  public lineChartColors:Array<any> = [
+    { // Green Target
+      backgroundColor: 'rgba(77,83,96,0.2)',
+      borderColor: 'rgba(77,83,96,1)',
+      pointBackgroundColor: 'rgba(77,83,96,1)',
+      pointBorderColor: '#fff',
+      pointHoverBackgroundColor: '#fff',
+      pointHoverBorderColor: 'rgba(77,83,96,1)'
+    },
+    { // dark grey performance
+      backgroundColor: 'rgba(0, 128, 0, 0.40)',
+      borderColor: 'rgba(0, 128, 0, 1)',
+      pointBackgroundColor: 'rgba(0, 128, 0, 1',
+      pointBorderColor: '#fff',
+      pointHoverBackgroundColor: '#fff',
+      pointHoverBorderColor: 'rgba(0, 128, 0, 1'
+    },
+  ];
+
 public lineChartLegend:boolean = true;
 public lineChartType:string = 'line';
 // Target and performace Report line chart end
@@ -101,5 +125,4 @@ public lineChartType:string = 'line';
             this.loadSopi();
         }
     }
-
 }

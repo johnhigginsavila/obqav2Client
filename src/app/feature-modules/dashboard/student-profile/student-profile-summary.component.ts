@@ -11,14 +11,15 @@ import { IStudentChart } from '../../../interfaces/student-chart.interface';
   templateUrl: './student-profile-summary.component.html',
   styleUrls: ['./student-profile-summary.component.css']
 })
-export class StudentProfileSummaryComponent implements OnInit {
+export class StudentProfileSummaryComponent implements OnInit{
 
-  private studentRadarData:any;
+    private studentRadarData:any;
     private session:ISession;
     private programId:number;
     private radarChartLabels:string[];
     private radarChartData:any[];
     private radarChartType:string;
+    private radarChartColors:any;
     private radarChartOptions:any;
     private studentIndex:number;
     private studentTotal:number;
@@ -38,14 +39,37 @@ export class StudentProfileSummaryComponent implements OnInit {
                 data => localStorage.setItem('studentData', JSON.stringify(data)),
                 error => console.log(error)
             )
-        setTimeout(()=>{
-                subscriber.unsubscribe();
-            },15000);
         this.loadStudentChart();
         // Student Profile Chart Start
 
-        this.radarChartData.push({data: [1,1,1,1,1,1,1,1,1,1], label: 'Average'});
+        this.radarChartData.push({data: [1,1,1,1,1,1,1,1,1,1], label: 'Average'},{data: [30], label:'lowest value'});
         this.radarChartType = 'radar';
+   
+
+
+        this.radarChartColors = [
+        { // dark grey performance
+        backgroundColor: 'rgba(0, 128, 0, 0.40)',
+        borderColor: 'rgba(0, 128, 0, 1)',
+        pointBackgroundColor: 'rgba(0, 128, 0, 1',
+        pointBorderColor: '#fff',
+        pointHoverBackgroundColor: '#fff',
+        pointHoverBorderColor: 'rgba(0, 128, 0, 1'
+        },
+            { // Green Target
+        backgroundColor: 'rgba(77,83,96,0.2)',
+        borderColor: 'rgba(77,83,96,1)',
+        pointBackgroundColor: 'rgba(77,83,96,1)',
+        pointBorderColor: '#fff',
+        pointHoverBackgroundColor: '#fff',
+        pointHoverBorderColor: 'rgba(77,83,96,1)'
+        }
+        ];
+
+
+
+
+
         this.radarChartOptions = {
                 responsive: true,
                 scales:{
@@ -102,5 +126,4 @@ export class StudentProfileSummaryComponent implements OnInit {
             this.studentTotal = this.myData.length;
         }
     }
-
 }

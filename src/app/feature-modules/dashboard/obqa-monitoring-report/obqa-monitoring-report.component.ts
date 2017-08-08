@@ -9,14 +9,14 @@ import { IAssessmentStatus } from '../../../interfaces/assessment-status.interfa
 import { IAssessmentReport } from '../../../interfaces/assessment-report.interface';
 import { ISession } from '../../../interfaces/session.interface';
 
+
 @Component({
   selector: 'app-obqa-monitoring-report',
   templateUrl: './obqa-monitoring-report.component.html',
   styleUrls: ['./obqa-monitoring-report.component.css']
 })
-export class ObqaMonitoringReportComponent implements OnInit {
-
-  selectedCycle:number;
+export class ObqaMonitoringReportComponent {
+    selectedCycle:number;
     selectedTerm:number;
 
     private assessmentReport:IAssessmentReport[];
@@ -109,5 +109,4 @@ export class ObqaMonitoringReportComponent implements OnInit {
         this.page = page;
         console.log(this.pagedItems);
     }
-
 }

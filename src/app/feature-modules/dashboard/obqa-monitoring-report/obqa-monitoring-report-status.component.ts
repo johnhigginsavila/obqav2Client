@@ -9,9 +9,8 @@ import { IAssessmentStatus } from '../../../interfaces/assessment-status.interfa
   templateUrl: './obqa-monitoring-report-status.component.html',
   styleUrls: ['./obqa-monitoring-report-status.component.css']
 })
-export class ObqaMonitoringReportStatusComponent implements OnInit {
-
-  private _csrf:string;
+export class ObqaMonitoringReportStatusComponent implements OnInit{
+    private _csrf:string;
     private barChartData:any[];
     private barChartLabels:any[];
     private barChartOptions:any;

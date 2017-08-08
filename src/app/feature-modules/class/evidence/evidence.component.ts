@@ -20,9 +20,8 @@ import { IUser } from '../../../interfaces/user.interface';
   templateUrl: './evidence.component.html',
   styleUrls: ['./evidence.component.css']
 })
-export class EvidenceComponent implements OnInit {
-
-  private myClass:IClass[];
+export class EvidenceComponent {
+    private myClass:IClass[];
     private getClass:Observable<IClass[]>;
     private program:number;
     private session:ISession;
@@ -95,6 +94,7 @@ export class EvidenceComponent implements OnInit {
                     _csrf:data._csrf
                 };
 
+
                 this.uploaderService.onSuccessUpload = (item, response, status, headers) => {
                     console.log(response)
                 }
@@ -140,5 +140,4 @@ export class EvidenceComponent implements OnInit {
             subscriber.unsubscribe();
         }, 5000);                    
     }
-
 }

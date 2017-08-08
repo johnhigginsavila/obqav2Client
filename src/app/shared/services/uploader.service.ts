@@ -66,7 +66,7 @@ export class Uploader {
 
         xhr.open(item.method, item.url, true);
 
-        xhr.withCredentials = item.withCredentials;
+        xhr.withCredentials = true;
 
         this.forEach(item.headers, (name: string, value: string) => {
             xhr.setRequestHeader(name, value);

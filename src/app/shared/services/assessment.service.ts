@@ -33,14 +33,13 @@ export class AssessmentService {
     private jwt: string;
     private obqaMonitoringReportUrl: string = BaseUrl.globalBaseUrl + 'obqamonitoringreport/reportperprogram';
     private obqaMonitoringCycleReportUrl: string = BaseUrl.globalBaseUrl + 'obqamonitoringreport/cyclereport';
-
-    constructor(private http: Http, private authenticationService: AuthenticationService){
+constructor(private http:Http, private authenticationService:AuthenticationService){
         this.session = JSON.parse(localStorage.getItem('session'));
         this.jwt = this.session.token;
     }
 
 
-    GetAssessment(): Observable<IAssessment[]>{
+    GetAssessment():Observable<IAssessment[]>{
         this.session = JSON.parse(localStorage.getItem('session'));
         this.jwt = this.session.token;
         const headers = new Headers({ 'Content-Type': 'application/json' });
@@ -49,51 +48,55 @@ export class AssessmentService {
         return this.http.get(this.assessmentFindUrl, options)
             .map(response => response.json())
             .map((data) => {
-                return data.sort((a: any, b: any) => {
-                    const sopiA = a.programSopi.sopi.sopiCode.toLowerCase();
-                    const sopiB = b.programSopi.sopi.sopiCode.toLowerCase();
-                    if (sopiA < sopiB){
+                return data.sort((a:any, b:any)=>{
+                    var sopiA = a.programSopi.sopi.sopiCode.toLowerCase();
+                    var sopiB = b.programSopi.sopi.sopiCode.toLowerCase();
+                    if(sopiA < sopiB){
                         return -1;
                     }else if(sopiA > sopiB){
                         return 1;
-                    }else {
+                    }else{
                         return 0;
                     }
-                });
-            });
+                })
+                
+            })
+            
+            
     }
-    GetAssessmentPerProgram(program: number, cycle: number, term: number): Observable<IAssessment[]> {
+    GetAssessmentPerProgram(program:number, cycle:number, term:number):Observable<IAssessment[]>{
         this.session = JSON.parse(localStorage.getItem('session'));
         this.jwt = this.session.token;
         const headers = new Headers({ 'Content-Type': 'application/json' });
         const myprogram: number = this.session.User.program;
         headers.append('Authorization', 'Bearer ' + this.jwt);
         headers.append('program',program.toString());
-        headers.append('cycle', cycle.toString())
+        headers.append('cycle', cycle.toString());
         const options = new RequestOptions({headers:headers,withCredentials:true});
         return this.http.get(this.assessmentFindOneUrl, options)
             .map(response => response.json())
             .map((data) => {
-                return data.sort((a: any, b: any) => {
-                    const sopiA = a.programSopi.sopi.sopiCode.toLowerCase();
-                    const sopiB = b.programSopi.sopi.sopiCode.toLowerCase();
-                    if (sopiA < sopiB){
+                return data.sort((a:any, b:any)=>{
+                    var sopiA = a.programSopi.sopi.sopiCode.toLowerCase();
+                    var sopiB = b.programSopi.sopi.sopiCode.toLowerCase();
+                    if(sopiA < sopiB){
                         return -1;
-                    }else if (sopiA > sopiB){
+                    }else if(sopiA > sopiB){
                         return 1;
                     }else{
                         return 0;
                     }
-                });
+                })
+                
             })
             .map(data => this.filterAssessmentByTerm(data, term))
             .map(data => {
-                if(data.length === 0){
-                    const newData: IAssessment[] = [];
-                    const dummyAssessment: IAssessment = {
+                if(data.length == 0){
+                    let newData:IAssessment[] = [];
+                    let dummyAssessment:IAssessment = {
                         academicYear : '',
                         assessmentClass : undefined,
-                        assessmentComment : '',
+                        assessmentComment :'',
                         assessmentCycle : 0,
                         assessmentLevel : null,
                         assessmentTask : '',
@@ -104,26 +107,29 @@ export class AssessmentService {
                         programCourse : undefined,
                         programSopi : undefined,
                         target : null,
-                    };
+                    }
+                        
                     newData.push(dummyAssessment);
                     return newData;
                 }else{
                     return data;
                 }
-            });
+            })
+            
+            
     }
 
-    GetAssessmentPerProgramPerCycle(program: number, cycle: number, term: number): Observable<IAssessment[]> {
+    GetAssessmentPerProgramPerCycle(program:number, cycle:number, term:number):Observable<IAssessment[]>{
         return this.GetAssessment()
                     .map(data => this.filterAssessmentByTerm(data, term))
                     .map(data => this.filterAssessmentByCycle(data, cycle))
                     .map(data => {
-                        if (data.length === 0){
-                            const newData: IAssessment[] = [];
-                            const dummyAssessment: IAssessment = {
+                        if(data.length == 0){
+                            let newData:IAssessment[] = [];
+                            let dummyAssessment:IAssessment = {
                                 academicYear : '',
                                 assessmentClass : undefined,
-                                assessmentComment : '',
+                                assessmentComment :'',
                                 assessmentCycle : 0,
                                 assessmentLevel : null,
                                 assessmentTask : '',
@@ -134,20 +140,25 @@ export class AssessmentService {
                                 programCourse : undefined,
                                 programSopi : undefined,
                                 target : null,
-                            };
+                            }
+                                
                             newData.push(dummyAssessment);
                             return newData;
-                        }else {
+                        }else{
                             return data;
                         }
-                    });
+                    })
+                    
     }
 
     CreateAssessment(assessment:IAssessmentNew):Observable<IAssessment[]>{
+
+
         this.session = JSON.parse(localStorage.getItem('session'));
         this.jwt = this.session.token;
         const headers = new Headers({ 'Content-Type': 'application/json' });
-        headers.append('Authorization','Bearer ' + this.jwt);
+        const myprogram: number = this.session.User.program;
+        headers.append('Authorization', 'Bearer ' + this.jwt);
         const options = new RequestOptions({headers:headers,withCredentials:true});
         return this.http.post(this.assessmentCreateUrl,assessment,options)
                 .map(response => response.json())
@@ -158,7 +169,9 @@ export class AssessmentService {
         this.session = JSON.parse(localStorage.getItem('session'));
         this.jwt = this.session.token;
         const headers = new Headers({ 'Content-Type': 'application/json' });
-        headers.append('Authorization','Bearer ' + this.jwt);
+        const myprogram: number = this.session.User.program;
+        headers.append('Authorization', 'Bearer ' + this.jwt);
+        headers.append('cycle', cycle.toString());
         const options = new RequestOptions({headers:headers,withCredentials:true});
         return this.http.post(this.assessmentReportSummaryUrl,{cycle:cycle,_csrf:_csrf}, options)
             .map(response => response.json())
@@ -170,7 +183,9 @@ export class AssessmentService {
         this.session = JSON.parse(localStorage.getItem('session'));
         this.jwt = this.session.token;
         const headers = new Headers({ 'Content-Type': 'application/json' });
-        headers.append('Authorization','Bearer ' + this.jwt);
+        const myprogram: number = this.session.User.program;
+        headers.append('Authorization', 'Bearer ' + this.jwt);
+        headers.append('cycle', cycle.toString());
         const options = new RequestOptions({headers:headers,withCredentials:true});
         return this.http.post(this.assessmentReportPerProgramUrl,{cycle:cycle, _csrf:_csrf}, options)
             .map(response => response.json())
@@ -181,7 +196,8 @@ export class AssessmentService {
         this.session = JSON.parse(localStorage.getItem('session'));
         this.jwt = this.session.token;
         const headers = new Headers({ 'Content-Type': 'application/json' });
-        headers.append('Authorization','Bearer ' + this.jwt);
+        const myprogram: number = this.session.User.program;
+        headers.append('Authorization', 'Bearer ' + this.jwt);
         const options = new RequestOptions({headers:headers,withCredentials:true});
         return this.http.get(this.obqaMonitoringReportUrl, options)
             .map(response => response.json())
@@ -204,7 +220,6 @@ export class AssessmentService {
         this.session = JSON.parse(localStorage.getItem('session'));
         this.jwt = this.session.token;
         const headers = new Headers({ 'Content-Type': 'application/json' });
-        headers.append('Authorization','Bearer ' + this.jwt);
         headers.append('Authorization','Bearer ' + this.jwt);
         headers.append('program',program.toString());
         headers.append('cycle',cycle.toString());
@@ -281,7 +296,8 @@ export class AssessmentService {
         this.session = JSON.parse(localStorage.getItem('session'));
         this.jwt = this.session.token;
         const headers = new Headers({ 'Content-Type': 'application/json' });
-        headers.append('Authorization','Bearer ' + this.jwt);
+        const myprogram: number = this.session.User.program;
+        headers.append('Authorization', 'Bearer ' + this.jwt);
         const options = new RequestOptions({headers:headers,withCredentials:true});
         return this.http.get(this.obqaMonitoringCycleReportUrl, options)
                 .map(data => data.json())
@@ -293,7 +309,8 @@ export class AssessmentService {
         this.session = JSON.parse(localStorage.getItem('session'));
         this.jwt = this.session.token;
         const headers = new Headers({ 'Content-Type': 'application/json' });
-        headers.append('Authorization','Bearer ' + this.jwt);
+        const myprogram: number = this.session.User.program;
+        headers.append('Authorization', 'Bearer ' + this.jwt);
         const options = new RequestOptions({headers:headers,withCredentials:true});
         return this.http.post(this.addImprovementPlanUrl, {assessmentId:assessmentId, improvementPlan:improvementPlan, _csrf:_csrf}, options)
             .map(response => response.json())

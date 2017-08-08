@@ -10,9 +10,8 @@ import { IEvidence } from '../../interfaces/evidence.interface';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
-export class DashboardComponent implements OnInit {
-
-  //Total OBQA Progress
+export class DashboardComponent implements OnInit{
+    //Total OBQA Progress
     private barChartData:any[];
     private barChartLabels:any[];
     private barChartOptions:any;
@@ -102,11 +101,36 @@ export class DashboardComponent implements OnInit {
      
   // Target and performace Report line chart
   public lineChartData:Array<any> = [
-    {data: [70, 50, 80], label: 'Target'},
-    {data: [86, 30, 87], label: 'Performance'}
+    {data: [80, 75, 80, 80, 90], label: 'Target'},
+    {data: [86, 60, 87, 96, 99], label: 'Performance'}
   ];
-  public lineChartLabels:Array<any> = ['Term 1', 'Term 2', 'Term 3'];
+  public lineChartLabels:Array<any> = ['Cycle 1', 'Cycle 2', 'Cycle 3', 'Cycle 4', 'Cycle 5'];
+
+  public lineChartColors:Array<any> = [
+
+  { // dark grey performance
+    backgroundColor: 'rgba(77,83,96,0.2)',
+    borderColor: 'rgba(77,83,96,1)',
+    pointBackgroundColor: 'rgba(77,83,96,1)',
+    pointBorderColor: '#fff',
+    pointHoverBackgroundColor: '#fff',
+    pointHoverBorderColor: 'rgba(77,83,96,1)'
+  },
+    { // Green Target
+    backgroundColor: 'rgba(0, 128, 0, 0.40)',
+    borderColor: 'rgba(0, 128, 0, 1)',
+    pointBackgroundColor: 'rgba(0, 128, 0, 1',
+    pointBorderColor: '#fff',
+    pointHoverBackgroundColor: '#fff',
+    pointHoverBorderColor: 'rgba(0, 128, 0, 1'
+  },
+  ];
   public lineChartOptions:any = {
+    elements: {
+    line: {
+        tension: 0
+    }
+    },
     responsive: true,
     scales:{
       yAxes:[{
